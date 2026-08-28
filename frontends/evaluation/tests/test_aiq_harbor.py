@@ -303,6 +303,15 @@ def test_live_progress_persists_counts_without_content(tmp_path: Path) -> None:
     assert secret_content not in persisted
 
 
+def test_runner_records_deep_profile_runtime_settings() -> None:
+    assert {"parallel_tool_calls", "chat_template_kwargs"} <= set(runner._LLM_RUNTIME_FIELDS)
+    assert {"paper_search", "deep_research_agent"} <= runner._FUNCTION_RUNTIME_FIELDS.keys()
+    assert {"provider", "timeout", "max_results"} <= set(runner._FUNCTION_RUNTIME_FIELDS["paper_search"])
+    assert {"orchestrator_llm", "tools", "enable_citation_verification"} <= set(
+        runner._FUNCTION_RUNTIME_FIELDS["deep_research_agent"]
+    )
+
+
 def test_runner_parser_exposes_supported_commands() -> None:
     parser = runner.build_parser()
     subparsers = next(action for action in parser._actions if action.dest == "command")

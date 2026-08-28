@@ -56,6 +56,8 @@ _LLM_RUNTIME_FIELDS = (
     "max_tokens",
     "num_retries",
     "timeout",
+    "parallel_tool_calls",
+    "chat_template_kwargs",
 )
 _FUNCTION_RUNTIME_FIELDS = {
     "tavily_web_search": (
@@ -79,6 +81,20 @@ _FUNCTION_RUNTIME_FIELDS = {
         "tools",
         "max_llm_turns",
         "max_tool_iterations",
+    ),
+    "paper_search": (
+        "provider",
+        "timeout",
+        "max_results",
+    ),
+    "deep_research_agent": (
+        "orchestrator_llm",
+        "source_router_llm",
+        "researcher_llm",
+        "planner_llm",
+        "writer_llm",
+        "tools",
+        "enable_citation_verification",
     ),
 }
 
