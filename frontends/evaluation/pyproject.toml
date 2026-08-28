@@ -27,7 +27,12 @@ build-backend = "hatchling.build"
 packages = ["src/aiq_harbor"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = [
+    "tests",
+    "adapters/deepsearchqa/tests",
+    "adapters/deepresearch-bench-ii/tests",
+]
+addopts = ["--import-mode=importlib"]
 
 [tool.ruff]
 line-length = 120
